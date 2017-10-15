@@ -3,8 +3,8 @@ This project demonstrates NESTED LOOPS (i.e., loops within loops)
 in the context of TWO-DIMENSIONAL GRAPHICS.
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Zijian Huang.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -49,9 +49,32 @@ def draw_upside_down_wall(rectangle, n, window):
     and n is nonnegative.
     """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #     Some tests are already written for you (above).
     # ------------------------------------------------------------------
+    original_ulc_x = rectangle.get_upper_left_corner().x
+    original_ulc_y = rectangle.get_upper_left_corner().y
+    original_lrc_x = rectangle.get_lower_right_corner().x
+    original_lrc_y = rectangle.get_lower_right_corner().y
+    original_width = rectangle.get_width()
+    original_height = rectangle.get_height()
+
+    ulc_x = original_ulc_x
+    ulc_y = original_ulc_y
+    lrc_x = original_lrc_x
+    lrc_y = original_lrc_y
+    for k in range(n):
+        for i in range(k + 1):
+            new_rect = rg.Rectangle(rg.Point(ulc_x,ulc_y), rg.Point(lrc_x,lrc_y))
+            new_rect.attach_to(window)
+            window.render()
+            ulc_x = ulc_x + original_width
+            lrc_x = lrc_x + original_width
+        ulc_y = ulc_y - original_height
+        lrc_y = lrc_y - original_height
+        ulc_x = original_ulc_x - (original_width / 2 * (k + 1))
+        lrc_x = original_lrc_x - (original_width / 2 * (k + 1))
+
 
 
 # ----------------------------------------------------------------------
