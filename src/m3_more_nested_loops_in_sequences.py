@@ -426,9 +426,10 @@ def first_is_elsewhere_too(seq_seq):
     for k in range(1, len(seq_seq)):
         for i in range(len(seq_seq[k])):
             list = list + [seq_seq[k][i]]
-    for n in range(len(list)):
-        if list[n] in seq_seq[0]:
-            return True
+    for i in range(len(seq_seq[0])):
+        for n in range(len(list)):
+            if list[n] == seq_seq[0][i]:
+                return True
     return False
 
 
